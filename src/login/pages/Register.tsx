@@ -1,11 +1,11 @@
 import { Button, CardContent, Grid2 as Grid, TextField } from "@mui/material";
 import { LoginPageProps } from "../../types/template";
 
-const Login = (props: LoginPageProps<"login.ftl">) => {
+const Register = (props: LoginPageProps<"register.ftl">) => {
     const { Template, kcContent, i18n } = props;
     const { msgStr } = i18n;
     const { realm, url, messagesPerField } = kcContent;
-    const { loginWithEmailAllowed } = realm;
+    const { registrationEmailAsUsername } = realm;
 
     return (
         <Template kcContext={kcContent} i18n={i18n}>
@@ -16,7 +16,7 @@ const Login = (props: LoginPageProps<"login.ftl">) => {
                             <TextField
                                 fullWidth
                                 name="username"
-                                label={loginWithEmailAllowed ? msgStr("username") : msgStr("username")}
+                                label={registrationEmailAsUsername ? msgStr("username") : msgStr("username")}
                                 error={messagesPerField.existsError("username")}
                                 helperText={messagesPerField.getFirstError("username")}
                             ></TextField>
@@ -41,4 +41,4 @@ const Login = (props: LoginPageProps<"login.ftl">) => {
     );
 };
 
-export default Login;
+export default Register;

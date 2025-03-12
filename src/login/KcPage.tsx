@@ -5,7 +5,8 @@ import { useI18n } from "./i18n";
 import DefaultPage from "keycloakify/login/DefaultPage";
 import DefaultTemplate from "keycloakify/login/Template";
 import Login from "./pages/Login";
-import LoginTemplate from "./LoginTemplate";
+import CustomTemplate from "./CustomTemplate";
+import Register from "./pages/Register";
 const UserProfileFormFields = lazy(
     () => import("keycloakify/login/UserProfileFormFields")
 );
@@ -22,7 +23,21 @@ export default function KcPage(props: { kcContext: KcContext }) {
             {(() => {
                 switch (kcContext.pageId) {
                     case "login.ftl":
-                        return <Login Template={LoginTemplate} />;
+                        return (
+                            <Login
+                                Template={CustomTemplate}
+                                kcContent={kcContext}
+                                i18n={i18n}
+                            />
+                        );
+                    case "register.ftl":
+                        return (
+                            <Register
+                                Template={CustomTemplate}
+                                kcContent={kcContext}
+                                i18n={i18n}
+                            />
+                        );
                     default:
                         return (
                             <DefaultPage
